@@ -1,4 +1,8 @@
-function changeBackground() {
-    let body: HTMLElement = document.getElementById("body")!;
-    body.style.backgroundColor= "#ff2d00"
+let buttons = document.getElementsByTagName("button");
+
+for (let i = 0; i < buttons.length; i++) {
+    let id = buttons[i].id;
+    buttons[i].addEventListener("click", () => 
+        document.body.style.backgroundColor = id);
+
 }
