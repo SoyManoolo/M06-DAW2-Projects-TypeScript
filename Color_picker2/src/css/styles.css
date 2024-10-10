@@ -22,6 +22,10 @@ body{
     background-color: black;
 }
 
+button {
+    border: none;
+}
+
 #box {
     display: flex;
     background-color: white;
