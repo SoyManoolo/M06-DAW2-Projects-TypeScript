@@ -13,7 +13,7 @@ if (display) {
                 display.value = numero.toString();
                 delAll = true;
             }
-            else if (btn.id === "=") {
+            else if (btn.id == "=") {
                 try {
                     display.value = eval(display.value);
                     delAll = true;
@@ -23,11 +23,11 @@ if (display) {
                     delAll = true;
                 }
             }
-            else if (btn.id === "ac") {
+            else if (btn.id == "ac") {
                 display.value = "";
                 delAll = false;
             }
-            else if (btn.id === "del") {
+            else if (btn.id == "del") {
                 if (delAll) {
                     display.value = "";
                     delAll = false;
@@ -36,11 +36,17 @@ if (display) {
                     display.value = display.value.slice(0, -1);
                 }
             }
+            else if (btn.value) {
+                delAll = false;
+                display.value += btn.value;
+            }
             else if (delAll) {
                 display.value = btn.id;
+                delAll = false;
             }
             else {
                 display.value += btn.id;
+                delAll = false;
             }
         });
     });

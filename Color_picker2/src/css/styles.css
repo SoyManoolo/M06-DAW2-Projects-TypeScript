@@ -4,6 +4,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 50%;
     height: 100vh;
+    background-color: black;
 }
 .container1 {
     display: grid;
@@ -35,16 +36,56 @@ button {
 
 #red {
     background-color: #f44336;
+    transition: 0.5s;
+}
+
+#red:hover {
+    background-color: #e53935;
+}
+
+#red:active {
+    background-color: #e53935;
+    scale: 0.98;
 }
 
 #green {
     background-color: #4caf50;
+    transition: 0.5s;
+}
+
+#green:hover {
+    background-color: #43a047;
+}
+
+#green:active {
+    background-color: #43a047;
+    scale: 0.98;
 }
 
 #blue {
     background-color: #2196f3;
+    transition: 0.5s;
+}
+
+#blue:hover {
+    background-color: #1e88e5;
+}
+
+#blue:active {
+    background-color: #1e88e5;
+    scale: 0.98;
 }
 
 #yellow {
     background-color: #ffeb3b;
+    transition: 0.5s;
+}
+
+#yellow:hover {
+    background-color: #fdd835;
+}
+
+#yellow:active {
+    background-color: #fdd835;
+    scale: 0.98;
 }

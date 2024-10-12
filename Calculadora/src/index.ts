@@ -33,10 +33,15 @@ if (display) {
                 } else {
                     display.value = display.value.slice(0, -1);
                 }
-            }else if(delAll){
+            } else if(btn.value){
+                delAll = false;
+                display.value += btn.value;
+            } else if(delAll){
                 display.value = btn.id;
+                delAll = false;
             } else {
-                display.value += btn.id
+                display.value += btn.id;
+                delAll = false
             }
         })
     })
