@@ -27,4 +27,4 @@ total - preuTotal
 L'import total supera els diners disponibles
 */
 
-let dinero: number = Number(prompt("Diners disponibles: "))!;
+let dinero: number = Number(prompt("Diners disponibles: "));
