@@ -7,9 +7,7 @@
 <p>En desarrollo</p>
 
 <h2>Instalación</h2>
-<p>Para poder hacer uso del repositiorio, solamente clona y ejecutalo en un server o en un plugging de VSC</p>
-<br>
-<p>Si deseas modificar algún archivo de Typescript utiliza el tsc para que se compile a JavaScript</p>
+<p>Para poder hacer uso del repositiorio, solamente clona y ejecutalo en un server o en un plugging de VSC<br>Si deseas modificar algún archivo de Typescript utiliza el tsc para que se compile a JavaScript</p>
 
 <h2>Tecnologias utilizadas</h2>
 <ul>
