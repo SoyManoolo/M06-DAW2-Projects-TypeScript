@@ -1,6 +1,6 @@
+"use strict";
 function modificarBom() {
-    let num: number  = Number((document.getElementById("num") as HTMLInputElement).value);
-
+    let num = Number(document.getElementById("num").value);
     for (let i = 0; i < num; i++) {
         let newWindow = window.open("", "", "width=300,height=300");
         if (newWindow) {
