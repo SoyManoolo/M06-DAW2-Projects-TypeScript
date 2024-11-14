@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Programació amb galetes</title>
+  <script src="./built/index.js"></script> 
+  <script>
+  </script>
+</head>
+ 
+<body onload="carregarCookies()">
+  <h1 id="header">Text en català</h1>
+  <p id="paragraph">Per veure els canvis, actualitzar la pàgina. (Original)<br /></p>
+  <button onclick="document.cookie = 'idioma = Catalan; expires = 31 Dec 2023; max-age = 0';">Català</button>
+  <button onclick="document.cookie = 'idioma = Castellano; expires = 31 Dec 2025';">Castellà</button>
+  <button onclick="document.cookie = 'idioma = Ingles';">Anglès</button><br />
+  <button onclick="document.cookie = 'fondo = Rojo';">Vermell</button>
+  <button onclick="document.cookie = 'fondo = Azul; expires = 31 Dec 2025';">Blau</button>
+  <button onclick="document.cookie = 'fondo = Verde';">Verd</button>
+  <button onclick="document.cookie = 'fondo = Blanco';">Blanco</button>
+</body>
+</html>

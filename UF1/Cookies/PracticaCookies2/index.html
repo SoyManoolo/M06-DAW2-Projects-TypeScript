@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Programació amb galetes</title>
+  <script src="./built/index.js"></script> 
+  <script>
+  </script>
+</head>
+ 
+<body onload="carregarCookies()">
+  <h1 id="header">Text en català</h1>
+  <p id="paragraph">Per veure els canvis, actualitzar la pàgina. (Original)<br /></p>
+  <button onclick="localStorage.setItem('idioma' , 'Catalan')">Català</button>
+  <button onclick="localStorage.setItem('idioma' , 'Castellano')">Castellà</button>
+  <button onclick="localStorage.setItem('idioma' , 'Ingles')">Anglès</button><br />
+  <button onclick="localStorage.setItem('fondo' , 'red')">Vermell</button>
+  <button onclick="localStorage.setItem('fondo' , 'blue')">Blau</button>
+  <button onclick="localStorage.setItem('fondo' , 'green')">Verd</button>
+  <button onclick="localStorage.setItem('fondo' , 'white')">Blanco</button>
+</body>
+</html>

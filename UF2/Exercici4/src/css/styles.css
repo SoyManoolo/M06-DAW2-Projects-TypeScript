@@ -1,0 +1,20 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 3;
+    padding: 30px;
+
+}
+
+.añadir{
+    background-color: green !important;
+    margin-top: 10px;
+}
+
+.btn-category{
+    background-color: rgb(209, 207, 72) !important;
+}
+
+#answer{
+    margin-top: 10px;
+}
