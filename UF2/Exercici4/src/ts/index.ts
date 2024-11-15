@@ -1,12 +1,15 @@
-let categories: Set<string> = new Set<string>();
-const div:HTMLElement = document.getElementById("answer")!;
+let categories: Map<string, string> = new Map();
+const divCategories:HTMLElement = document.getElementById("lista-categorias")!;
 
 function addCategory() {
     let category: string = (document.getElementById("category")! as HTMLInputElement).value;
-    categories.add(category);
+    categories.set("categoria", category);
     console.log(category + " se ha añadido correctamente");
 }
 
 function showCategories() {
-    div.innerHTML = [...categories].join("<br>");
+    categories.forEach((key, value) => {
+        divCategories.innerHTML += key + "<br>";
+    });
+    divCategories.innerHTML = [...categories].join("<br>");
 }

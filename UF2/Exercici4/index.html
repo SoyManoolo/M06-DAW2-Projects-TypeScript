@@ -9,14 +9,37 @@
 </head>
 <body>
     <div class="container">
-        <div id="categorias">
+        <div class="categorias">
             <h1>Categorias</h1>
-            <label for="category">Categoria</label>
-            <input name="category" type="text" id="category"><br>
-            <button class="btn añadir" onclick="addCategory()">Añadir</button><br><br>
-            <button class="btn btn-category" onclick="showCategories()">Mostrar categorías</button>
-            <div id="answer"></div>
+            <div class="category-input">
+                <label for="category">Categoria</label>
+                <input name="category" type="text" id="category" placeholder="Ej: frutas">
+            </div>
+            <div class="category-btn">
+                <button class="btn añadir" onclick="addCategory()">Añadir</button>
+                <button class="btn mostrar" onclick="showCategories()">Mostrar categorías</button>
+            </div>
+            <h4>Lista categorias:</h4>
+            <div id="lista-categorias"></div>
         </div>
+
+        <div class="productos">
+            <h1 class="titulo-producto">Productos</h1>
+            <div class="product-input">
+                <label for="product">Producto</label>
+                <input name="product" type="text" id="product" placeholder="Ej: manzana">
+                <label for="cantidad">Cantidad</label>
+                <input name="cantidad" type="number" id="cantidad" min="1">
+            </div>
+            <div class="product-btn">
+                <button class="btn añadir" onclick="addProduct()">Añadir</button>
+                <button class="btn eliminar">Eliminar</button>
+                <button class="btn mostrar mostrar2" onclick="showProducts()">Mostrar productos</button>
+            </div>
+            <h4>Lista productos:</h4>
+            <div></div>
+        </div>
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="./built/index.js"></script>

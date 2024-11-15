@@ -1,20 +1,66 @@
 .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 3;
     padding: 30px;
+}
 
+.categorias{
+    align-items: center;
+    display: grid;
+    grid-template-columns: 270px;
+    grid-template-rows: auto auto;
+    gap: 10px;
+}
+
+.category-input{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.category-btn{
+    grid-column: 1;
+    grid-row: 3;
 }
 
 .añadir{
-    background-color: green !important;
-    margin-top: 10px;
+    background-color: rgb(68, 201, 68) !important;
 }
 
-.btn-category{
+.añadir:hover{
+    background-color: green !important;
+}
+
+.mostrar{
     background-color: rgb(209, 207, 72) !important;
+}
+
+.mostrar:hover{
+    background-color: rgb(168, 168, 55) !important;
 }
 
 #answer{
     margin-top: 10px;
+}
+
+.titulo-producto{
+    grid-column: 1/3;
+}
+
+.productos{
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 260px);
+    grid-template-rows: auto auto;
+    gap: 10px;
+}
+
+.product-input{
+    grid-column: 1/ 3;
+    grid-row: 2;
+}
+
+.product-btn{
+    grid-column: 1/3;
+    grid-row: 3;
+}
+.eliminar{
+    background-color: rgb(250, 82, 82) !important;
 }
