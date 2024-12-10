@@ -79,4 +79,3 @@ function execucions(){
     enviarMissatges(985421122, "Demano informació sobre aquest curs", "Salutacions"); //Resultat (alert): Missatge enviat al telèfon, contingut: Salutacions Demano informació sobre aquest curs
     //enviarMissatges("error", "error"); //Resultat: L'email no té un format vàlid.
 }
-

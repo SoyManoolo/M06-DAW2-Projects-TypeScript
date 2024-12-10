@@ -1,60 +1,60 @@
 "use strict";
 //Funció per provar les funcions realitzades, comenteu i descomenteu una linea per separat per provar les diferents opcions
 function classificarParaules(lista) {
-    let paraules = [];
-    for (let i = 0; i < lista.length; i++) {
-        if (lista[i].length > 5) {
-            paraules.push(lista[i]);
+    let paraules = []; //Array per guardar les paraules amb més de 5 lletres
+    for (let i = 0; i < lista.length; i++) { //Recorrem la llista de paraules
+        if (lista[i].length > 5) { //Si la paraula té més de 5 lletres
+            paraules.push(lista[i]); //Afegim la paraula a l'array
         }
     }
     console.log(paraules);
 }
 function analitzarTemperatures(...numeros) {
-    let max = Math.max(...numeros);
-    let min = Math.min(...numeros);
-    let avg = 0;
-    for (let numero of numeros) {
-        avg += numero;
+    let max = Math.max(...numeros); //Spread operator per passar els valors de l'array com a paràmetres
+    let min = Math.min(...numeros); //Spread operator per passar els valors de l'array com a paràmetres
+    let avg = 0; //Variable per guardar la mitjana
+    for (let numero of numeros) { //Recorrem l'array de números
+        avg += numero; //Sumem els números per calcular la mitjana
     }
-    avg = avg / numeros.length;
-    let tabla = document.getElementById("taulaTemperatures");
-    let fila = tabla.insertRow();
-    let celdaMax = fila.insertCell();
-    celdaMax.textContent = max.toString();
+    avg = avg / numeros.length; //Dividim la suma dels números pel total de números per obtenir la mitjana
+    let tabla = document.getElementById("taulaTemperatures"); //Obtenim la taula de la vista
+    let fila = tabla.insertRow(); //Afegim una fila a la taula
+    let celdaMax = fila.insertCell(); //Afegim una cel·la a la fila
+    celdaMax.textContent = max.toString(); //Afegim el valor de la temperatura màxima a la cel·la
     let celdaMin = fila.insertCell();
     celdaMin.textContent = min.toString();
     let celdaAvg = fila.insertCell();
     celdaAvg.textContent = avg.toFixed(2).toString();
 }
 function enviarMissatges(a, b, saludo) {
-    if (typeof a === "string" && typeof b === "string") {
-        let arroba = false;
-        for (let i = 0; i < a.length; i++) {
+    if (typeof a === "string" && typeof b === "string") { //Comprovem que els paràmetres siguin de tipus string
+        let arroba = false; //Variable per comprovar si l'email té arroba
+        for (let i = 0; i < a.length; i++) { //Recorrem l'email
             if (a[i] == "@")
-                arroba = true;
+                arroba = true; //Si trobem una arroba, canviem el valor de la variable
         }
-        if (arroba && saludo != null) {
-            console.log(b + " " + saludo);
+        if (arroba && saludo != null) { //Si l'email té arroba i el saludo no és null
+            console.log(b + " " + saludo); //Mostrem el missatge amb el saludo
         }
-        else if (arroba && saludo == null) {
-            console.log(b);
+        else if (arroba && saludo == null) { //Si l'email té arroba i el saludo és null
+            console.log(b); //Mostrem el missatge sense saludo
         }
         else
-            console.log("No es tracta d'un email");
+            console.log("No es tracta d'un email"); //Si l'email no té arroba mostrem un missatge d'error
     }
-    else if (typeof a === "number" && typeof b === "string") {
-        if (a.toString().length == 9 && saludo == null) {
-            alert(b);
+    else if (typeof a === "number" && typeof b === "string") { //Comprovem que els paràmetres siguin de tipus number i string
+        if (a.toString().length == 9 && saludo == null) { //Si el número té 9 dígits i el saludo és null
+            alert(b); //Mostrem un alert amb el missatge
         }
-        else if (a.toString().length == 9 && saludo != null) {
-            alert(b + " " + saludo);
+        else if (a.toString().length == 9 && saludo != null) { //Si el número té 9 dígits i el saludo no és null
+            alert(b + " " + saludo); //Mostrem un alert amb el missatge i el saludo
         }
-        else {
-            console.log("No es un telefon mòbil");
+        else { //Si el número no té 9 dígits
+            console.log("No es un telefon mòbil"); //Mostrem un missatge d'error
         }
     }
     else
-        throw new Error("Els parametres no son correctes");
+        throw new Error("Els parametres no son correctes"); //Si els paràmetres no són de tipus string o number, llancem un error
 }
 function execucions() {
     const paraules = ["cotxe", "avió", "ferrocarril", "vaixell", "motocicleta", "tractor"]; //Resultat: 4 elements: ferrocarril, vaixell, motocicleta, tractor
