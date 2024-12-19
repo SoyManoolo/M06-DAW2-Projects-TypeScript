@@ -1,0 +1,37 @@
+.container {
+    margin-top: 20px;
+    align-items: center;
+    display: grid;
+    height: 50vh;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.menu, .plat-input {
+    height: 100%; /* Asegúrate de que ocupen toda la altura disponible */
+}
+
+
+.input1, .input2 {
+    width: 100%;  /* Ambos inputs ocuparán el 100% del ancho del contenedor */
+    margin-bottom: 10px; /* Espacio entre los inputs */
+}
+
+label {
+    font-weight: bold;
+}
+
+.btn {
+    background-color: green;
+    color: white;
+}
+
+.btn:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+header {
+    padding-left: 20px;
+    padding-top: 10px;
+}
