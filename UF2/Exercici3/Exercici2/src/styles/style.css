@@ -1,0 +1,33 @@
+header {
+    background-color: #333;
+    color: white;
+    min-height: 80px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+label, input {
+    display: block;
+}
+
+.enviar, .mostrar {
+    border: solid 1px #333;
+}
+
+.enviar {
+    margin-top: 20px;
+}

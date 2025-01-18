@@ -9,12 +9,53 @@
 </head>
 <body>
     <header>
-
+        <h1>Bar Manolo</h1>
     </header>
     <main>
+        <div class="container">
+            <section class="clients">
+                <h2>Clients</h2>
+                <h3>Afegir client</h3>
+                <form>
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom">
+                    <label for="cognom">Cognom</label>
+                    <input type="text" name="cognom" id="cognom">
+                    <label for="dni">DNI</label>
+                    <input type="text" name="dni" id="dni">
+                    <label for="targeta">Targeta de credit</label>
+                    <input type="text" name="targeta" id="targeta">
 
+                    <button class="btn enviar" onclick="afegirClient()">Afegir client</button>
+                </form>
+                <h3>Mostrar clients</h3>
+                <button class="btn mostrar" onclick="mostrarClients()">Mostrar</button>
+            </section>
+            <section class="comandes">
+                <h2>Comandes</h2>
+
+                <h3>Afegir comanda</h3>
+                <form action="">
+                    <label for="nomPlat">Nom Plat</label>
+                    <input type="text" name="nomPlat" id="nomPlat">
+                    <button class="btn enviar" onclick="afegirComanda()">Afegir comanda</button>
+                </form>
+                <h3>Mostrar comandes</h3>
+                <button class="btn mostrar" onclick="mostrarComandes()">Mostrar</button>
+            </section>
+        </div>
     </main>
     <script src="built/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<!-- 
+A partir d'aquí, afegiu la lògica necessària a l’HTML per:
+Poder afegir clients nous
+Poder afegir comandes
+Poder mostrar els clients
+Poder mostrar les comandes
+Poder afegir comandes a clients
+Poder mostrar les comandes d’un client al HTML 
+-->

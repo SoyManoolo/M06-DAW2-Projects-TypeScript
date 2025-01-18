@@ -1,3 +1,4 @@
+"use strict";
 /*
 Ara utilitzarem OOP per a fer classes per gestionar els clients del restaurant i les comandes que es fan:
 
@@ -14,9 +15,9 @@ Targeta de crèdit
 
 I dos mètodes públics:
 afegirComanda: li arriba com a paràmetre una Comanda i la desa.
-mostrarComandes: retorna un string composat pel seu nom i les comandes que ha realitzat. 
+mostrarComandes: retorna un string composat pel seu nom i les comandes que ha realitzat.
 
-La classe haurà de tenir els seus getters, setters i constructor. 
+La classe haurà de tenir els seus getters, setters i constructor.
 
 Classe Comanda
 
@@ -26,7 +27,7 @@ Nom Plats (un string separat per comes. S’ha de comprovar que està al objecte
 Ha de tenir una propietat privada:
 ID (autoincremental)
 
-La classe haurà de tenir els seus getters, setters i constructor. 
+La classe haurà de tenir els seus getters, setters i constructor.
 
 Lògica
 
@@ -38,95 +39,67 @@ Poder mostrar les comandes
 Poder afegir comandes a clients
 Poder mostrar les comandes d’un client al HTML
 */
-
 class Client {
-    public nom: string;
-    public cognoms: string;
-    public comandes: Comanda[] = [];
-    private DNI: string;
-    private targetaCredit: string;
-
-    public afegirComanda() {
-        
+    afegirComanda() {
     }
-
-    public mostrarComandes() {
-
+    mostrarComandes() {
     }
-
-    constructor(nom: string, cognoms: string, DNI: string, targetaCredit: string) {
+    constructor(nom, cognoms, DNI, targetaCredit) {
+        this.comandes = [];
         this.nom = nom;
         this.cognoms = cognoms;
         this.DNI = DNI;
         this.targetaCredit = targetaCredit;
     }
-
     get getDNI() {
         return this.DNI;
     }
-
-    set setDNI(DNI: string) {
+    set setDNI(DNI) {
         this.DNI = DNI;
     }
-
     get getTargetaCredit() {
         return this.targetaCredit;
     }
-
-    set setTargetaCredit(targetaCredit: string) {
+    set setTargetaCredit(targetaCredit) {
         this.targetaCredit = targetaCredit;
     }
-
 }
-
 class Comanda {
-    public nomPlats: string;
-    private ID: number;
-    private static contadorID: number = 1;
-
-    constructor(nomPlats: string) {
+    constructor(nomPlats) {
         this.nomPlats = nomPlats;
         this.ID = Comanda.contadorID++;
     }
-
     get getNomPlats() {
         return this.nomPlats;
     }
-
-    set setNomPlats(nomPlats: string) {
+    set setNomPlats(nomPlats) {
         this.nomPlats = nomPlats;
     }
-
     get getID() {
         return this.ID;
     }
-
 }
-
-const clients: Client[] = [];
-
+Comanda.contadorID = 1;
+const clients = [];
 function afegirClient() {
-    const nom: string = (document.getElementById("nom") as HTMLInputElement).value;
-    const cognoms: string = (document.getElementById("cognom") as HTMLInputElement).value;
-    const DNI: string = (document.getElementById("DNI") as HTMLInputElement).value;
-    const targetaCredit: string = (document.getElementById("targetaCredit") as HTMLInputElement).value;
-
-    if(nom == "" || cognoms == "" || DNI == "" || targetaCredit == "") {
-        alert("Has d'omplir tots els camps");
-        return
-    } else if (nom == null || cognoms == null || DNI == null || targetaCredit == null) {
+    const nom = document.getElementById("nom").value;
+    const cognoms = document.getElementById("cognom").value;
+    const DNI = document.getElementById("DNI").value;
+    const targetaCredit = document.getElementById("targetaCredit").value;
+    if (nom == "" || cognoms == "" || DNI == "" || targetaCredit == "") {
         alert("Has d'omplir tots els camps");
         return;
-    } else if(DNI.length !== 9) {
+    }
+    else if (nom == null || cognoms == null || DNI == null || targetaCredit == null) {
+        alert("Has d'omplir tots els camps");
+        return;
+    }
+    else if (DNI.length !== 9) {
         alert("El DNI ha de tenir 9 caràcters");
         return;
     }
-
     let client = new Client(nom, cognoms, DNI, targetaCredit);
-
     clients.push(client);
 }
-
 function mostrarClients() {
-
 }
