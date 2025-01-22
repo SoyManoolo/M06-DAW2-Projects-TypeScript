@@ -1,44 +1,3 @@
-/*
-Ara utilitzarem OOP per a fer classes per gestionar els clients del restaurant i les comandes que es fan:
-
-Classe Client
-
-Ha de tenir dues propietats públiques:
-Nom
-Cognoms
-Comandes
-
-Ha de tenir dues propietats privades:
-DNI
-Targeta de crèdit
-
-I dos mètodes públics:
-afegirComanda: li arriba com a paràmetre una Comanda i la desa.
-mostrarComandes: retorna un string composat pel seu nom i les comandes que ha realitzat. 
-
-La classe haurà de tenir els seus getters, setters i constructor. 
-
-Classe Comanda
-
-Ha de tenir una propietat pública:
-Nom Plats (un string separat per comes. S’ha de comprovar que està al objecte)
-
-Ha de tenir una propietat privada:
-ID (autoincremental)
-
-La classe haurà de tenir els seus getters, setters i constructor. 
-
-Lògica
-
-A partir d'aquí, afegiu la lògica necessària a l’HTML per:
-Poder afegir clients nous
-Poder afegir comandes
-Poder mostrar els clients
-Poder mostrar les comandes
-Poder afegir comandes a clients
-Poder mostrar les comandes d’un client al HTML
-*/
-
 class Client {
     public nom: string;
     public cognoms: string;
@@ -140,7 +99,7 @@ function afegirClient() {
     targetaCredit.value = "";
 }
 
-function mostrarClients(clients: Client[]) {
+function mostrarClients(clients: Client[]): void {
     const clientsDiv: HTMLDivElement = document.getElementById("clients") as HTMLDivElement;
 
     clientsDiv.innerHTML = "";
@@ -150,7 +109,7 @@ function mostrarClients(clients: Client[]) {
     });
 }
 
-function afegirComanda() {
+function afegirComanda(): void {
     const nomPlats: HTMLInputElement = document.getElementById("nomPlat") as HTMLInputElement;
 
     if(nomPlats.value == "") {
@@ -167,7 +126,7 @@ function afegirComanda() {
     nomPlats.value = "";
 }
 
-function mostrarComandes(comandes: Comanda[]) {
+function mostrarComandes(comandes: Comanda[]): void {
     const comandesDiv: HTMLDivElement = document.getElementById("comandes") as HTMLDivElement;
 
     comandesDiv.innerHTML = "";
@@ -177,10 +136,45 @@ function mostrarComandes(comandes: Comanda[]) {
     });
 }
 
-function afegirComandaClient() {
+function afegirComandaClient(): void {
+    const comanda: HTMLInputElement = document.getElementById("nomPlatClient") as HTMLInputElement;
+    const dni: HTMLInputElement = document.getElementById("dniClient") as HTMLInputElement;
 
+    if(comanda.value == "" || dni.value == "") {
+        alert("Has d'omplir els camps");
+        return;
+    }
+
+    let client: Client = clients.find(client => client.getDNI == dni.value) as Client;
+    let comandaObject: Comanda = comandes.find(c => c.getNomPlats == comanda.value) as Comanda;
+
+    if (client && comandaObject) {
+        client.afegirComanda(comandaObject);
+        comanda.value = "";
+        dni.value = "";
+    } else {
+        alert("El client o la comanda no existeixen");
+        comanda.value = "";
+        dni.value = "";
+    }
 }
 
-function mostrarComandesClient() {
+function mostrarComandesClient(): void {
+    const comandesClientDiv: HTMLDivElement = document.getElementById("comandesClients") as HTMLDivElement;
+    comandesClientDiv.textContent = "";
 
+    const dni: HTMLInputElement = document.getElementById("dniClientComanda") as HTMLInputElement;
+    let client: Client = clients.find(client => client.getDNI == dni.value) as Client;
+
+    if (client && client.comandes.length > 0) {
+        let clientDNI: HTMLElement = document.createElement("h3");
+        clientDNI.textContent = client.getDNI;
+        for (let i = 0; i < client.comandes.length; i++) {
+            comandesClientDiv.innerHTML += client.comandes[i].nomPlats + "<br>";
+        }
+    } else {
+        alert("El client no existeix o no té comandes");
+    }
+
+    dni.value = "";
 }

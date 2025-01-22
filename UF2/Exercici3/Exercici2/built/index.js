@@ -1,44 +1,4 @@
 "use strict";
-/*
-Ara utilitzarem OOP per a fer classes per gestionar els clients del restaurant i les comandes que es fan:
-
-Classe Client
-
-Ha de tenir dues propietats públiques:
-Nom
-Cognoms
-Comandes
-
-Ha de tenir dues propietats privades:
-DNI
-Targeta de crèdit
-
-I dos mètodes públics:
-afegirComanda: li arriba com a paràmetre una Comanda i la desa.
-mostrarComandes: retorna un string composat pel seu nom i les comandes que ha realitzat.
-
-La classe haurà de tenir els seus getters, setters i constructor.
-
-Classe Comanda
-
-Ha de tenir una propietat pública:
-Nom Plats (un string separat per comes. S’ha de comprovar que està al objecte)
-
-Ha de tenir una propietat privada:
-ID (autoincremental)
-
-La classe haurà de tenir els seus getters, setters i constructor.
-
-Lògica
-
-A partir d'aquí, afegiu la lògica necessària a l’HTML per:
-Poder afegir clients nous
-Poder afegir comandes
-Poder mostrar els clients
-Poder mostrar les comandes
-Poder afegir comandes a clients
-Poder mostrar les comandes d’un client al HTML
-*/
 class Client {
     constructor(nom, cognoms, DNI, targetaCredit) {
         this.comandes = [];
@@ -136,6 +96,39 @@ function mostrarComandes(comandes) {
     });
 }
 function afegirComandaClient() {
+    const comanda = document.getElementById("nomPlatClient");
+    const dni = document.getElementById("dniClient");
+    if (comanda.value == "" || dni.value == "") {
+        alert("Has d'omplir els camps");
+        return;
+    }
+    let client = clients.find(client => client.getDNI == dni.value);
+    let comandaObject = comandes.find(c => c.getNomPlats == comanda.value);
+    if (client && comandaObject) {
+        client.afegirComanda(comandaObject);
+        comanda.value = "";
+        dni.value = "";
+    }
+    else {
+        alert("El client o la comanda no existeixen");
+        comanda.value = "";
+        dni.value = "";
+    }
 }
 function mostrarComandesClient() {
+    const comandesClientDiv = document.getElementById("comandesClients");
+    comandesClientDiv.textContent = "";
+    const dni = document.getElementById("dniClientComanda");
+    let client = clients.find(client => client.getDNI == dni.value);
+    if (client && client.comandes.length > 0) {
+        let clientDNI = document.createElement("h3");
+        clientDNI.textContent = client.getDNI;
+        for (let i = 0; i < client.comandes.length; i++) {
+            comandesClientDiv.innerHTML += client.comandes[i].nomPlats + "<br>";
+        }
+    }
+    else {
+        alert("El client no existeix o no té comandes");
+    }
+    dni.value = "";
 }
