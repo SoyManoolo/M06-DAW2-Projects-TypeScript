@@ -11,14 +11,14 @@ class Client {
     get getDNI() {
         return this.DNI;
     }
-    set setDNI(DNI) {
-        this.DNI = DNI;
-    }
     get getTargetaCredit() {
         return this.targetaCredit;
     }
     set setTargetaCredit(targetaCredit) {
         this.targetaCredit = targetaCredit;
+    }
+    set setDNI(DNI) {
+        this.DNI = DNI;
     }
     afegirComanda(comanda) {
         this.comandes.push(comanda);
@@ -39,11 +39,11 @@ class Comanda {
     get getNomPlats() {
         return this.nomPlats;
     }
-    set setNomPlats(nomPlats) {
-        this.nomPlats = nomPlats;
-    }
     get getID() {
         return this._id;
+    }
+    set setNomPlats(nomPlats) {
+        this.nomPlats = nomPlats;
     }
 }
 Comanda.contadorID = 1;

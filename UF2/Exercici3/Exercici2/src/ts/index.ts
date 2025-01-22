@@ -17,16 +17,16 @@ class Client {
         return this.DNI;
     }
 
-    set setDNI(DNI: string) {
-        this.DNI = DNI;
-    }
-
     get getTargetaCredit() {
         return this.targetaCredit;
     }
 
     set setTargetaCredit(targetaCredit: string) {
         this.targetaCredit = targetaCredit;
+    }
+
+    set setDNI(DNI: string) {
+        this.DNI = DNI;
     }
 
     public afegirComanda(comanda: Comanda) {
@@ -60,14 +60,13 @@ class Comanda {
         return this.nomPlats;
     }
 
-    set setNomPlats(nomPlats: string) {
-        this.nomPlats = nomPlats;
-    }
-
     get getID() {
         return this._id;
     }
 
+    set setNomPlats(nomPlats: string) {
+        this.nomPlats = nomPlats;
+    }
 }
 
 const clients: Client[] = [];
