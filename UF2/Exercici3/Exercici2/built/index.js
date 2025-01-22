@@ -40,16 +40,13 @@ Poder afegir comandes a clients
 Poder mostrar les comandes d’un client al HTML
 */
 class Client {
-    afegirComanda() {
-    }
-    mostrarComandes() {
-    }
     constructor(nom, cognoms, DNI, targetaCredit) {
         this.comandes = [];
         this.nom = nom;
         this.cognoms = cognoms;
         this.DNI = DNI;
         this.targetaCredit = targetaCredit;
+        this.comandes = [];
     }
     get getDNI() {
         return this.DNI;
@@ -63,11 +60,21 @@ class Client {
     set setTargetaCredit(targetaCredit) {
         this.targetaCredit = targetaCredit;
     }
+    afegirComanda(comanda) {
+        this.comandes.push(comanda);
+    }
+    mostrarComandes() {
+        let resultat = "";
+        this.comandes.forEach(comanda => {
+            resultat += comanda.nomPlats + "\n";
+        });
+        return resultat;
+    }
 }
 class Comanda {
     constructor(nomPlats) {
         this.nomPlats = nomPlats;
-        this.ID = Comanda.contadorID++;
+        this._id = Comanda.contadorID++;
     }
     get getNomPlats() {
         return this.nomPlats;
@@ -76,30 +83,59 @@ class Comanda {
         this.nomPlats = nomPlats;
     }
     get getID() {
-        return this.ID;
+        return this._id;
     }
 }
 Comanda.contadorID = 1;
 const clients = [];
+const comandes = [];
 function afegirClient() {
-    const nom = document.getElementById("nom").value;
-    const cognoms = document.getElementById("cognom").value;
-    const DNI = document.getElementById("DNI").value;
-    const targetaCredit = document.getElementById("targetaCredit").value;
-    if (nom == "" || cognoms == "" || DNI == "" || targetaCredit == "") {
+    const nom = document.getElementById("nom");
+    const cognoms = document.getElementById("cognom");
+    const DNI = document.getElementById("dni");
+    const targetaCredit = document.getElementById("targeta");
+    if (nom.value == "" || cognoms.value == "" || DNI.value == "" || targetaCredit.value == "") {
         alert("Has d'omplir tots els camps");
         return;
     }
-    else if (nom == null || cognoms == null || DNI == null || targetaCredit == null) {
-        alert("Has d'omplir tots els camps");
-        return;
-    }
-    else if (DNI.length !== 9) {
+    else if (DNI.value.length !== 9) {
         alert("El DNI ha de tenir 9 caràcters");
         return;
     }
-    let client = new Client(nom, cognoms, DNI, targetaCredit);
+    let client = new Client(nom.value, cognoms.value, DNI.value, targetaCredit.value);
     clients.push(client);
+    mostrarClients(clients);
+    nom.value = "";
+    cognoms.value = "";
+    DNI.value = "";
+    targetaCredit.value = "";
 }
-function mostrarClients() {
+function mostrarClients(clients) {
+    const clientsDiv = document.getElementById("clients");
+    clientsDiv.innerHTML = "";
+    clients.forEach(client => {
+        clientsDiv.innerHTML += `${client.nom} ${client.cognoms}<br>`;
+    });
+}
+function afegirComanda() {
+    const nomPlats = document.getElementById("nomPlat");
+    if (nomPlats.value == "") {
+        alert("Has d'omplir el camp");
+        return;
+    }
+    let comanda = new Comanda(nomPlats.value);
+    comandes.push(comanda);
+    mostrarComandes(comandes);
+    nomPlats.value = "";
+}
+function mostrarComandes(comandes) {
+    const comandesDiv = document.getElementById("comandes");
+    comandesDiv.innerHTML = "";
+    comandes.forEach(comanda => {
+        comandesDiv.innerHTML += `${comanda.nomPlats}<br>`;
+    });
+}
+function afegirComandaClient() {
+}
+function mostrarComandesClient() {
 }

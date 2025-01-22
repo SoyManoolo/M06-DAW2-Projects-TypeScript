@@ -46,19 +46,12 @@ class Client {
     private DNI: string;
     private targetaCredit: string;
 
-    public afegirComanda() {
-        
-    }
-
-    public mostrarComandes() {
-
-    }
-
     constructor(nom: string, cognoms: string, DNI: string, targetaCredit: string) {
         this.nom = nom;
         this.cognoms = cognoms;
         this.DNI = DNI;
         this.targetaCredit = targetaCredit;
+        this.comandes = [];
     }
 
     get getDNI() {
@@ -77,16 +70,31 @@ class Client {
         this.targetaCredit = targetaCredit;
     }
 
+    public afegirComanda(comanda: Comanda) {
+        this.comandes.push(comanda);
+    }
+
+    public mostrarComandes() {
+        let resultat: string = "";
+
+        this.comandes.forEach(comanda => {
+            resultat += comanda.nomPlats + "\n";
+        });
+
+        return resultat;
+    }
+
 }
 
 class Comanda {
     public nomPlats: string;
-    private ID: number;
+    private _id: number;
+
     private static contadorID: number = 1;
 
     constructor(nomPlats: string) {
         this.nomPlats = nomPlats;
-        this.ID = Comanda.contadorID++;
+        this._id = Comanda.contadorID++;
     }
 
     get getNomPlats() {
@@ -98,35 +106,81 @@ class Comanda {
     }
 
     get getID() {
-        return this.ID;
+        return this._id;
     }
 
 }
 
 const clients: Client[] = [];
+const comandes: Comanda[] = [];
 
 function afegirClient() {
-    const nom: string = (document.getElementById("nom") as HTMLInputElement).value;
-    const cognoms: string = (document.getElementById("cognom") as HTMLInputElement).value;
-    const DNI: string = (document.getElementById("DNI") as HTMLInputElement).value;
-    const targetaCredit: string = (document.getElementById("targetaCredit") as HTMLInputElement).value;
+    const nom: HTMLInputElement = document.getElementById("nom") as HTMLInputElement;
+    const cognoms: HTMLInputElement = document.getElementById("cognom") as HTMLInputElement;
+    const DNI: HTMLInputElement = document.getElementById("dni") as HTMLInputElement;
+    const targetaCredit: HTMLInputElement = document.getElementById("targeta") as HTMLInputElement;
 
-    if(nom == "" || cognoms == "" || DNI == "" || targetaCredit == "") {
+    if(nom.value == "" || cognoms.value == "" || DNI.value == "" || targetaCredit.value == "") {
         alert("Has d'omplir tots els camps");
         return
-    } else if (nom == null || cognoms == null || DNI == null || targetaCredit == null) {
-        alert("Has d'omplir tots els camps");
-        return;
-    } else if(DNI.length !== 9) {
+    } else if(DNI.value.length !== 9) {
         alert("El DNI ha de tenir 9 caràcters");
         return;
     }
 
-    let client = new Client(nom, cognoms, DNI, targetaCredit);
+    let client = new Client(nom.value, cognoms.value, DNI.value, targetaCredit.value);
 
     clients.push(client);
+
+    mostrarClients(clients);
+
+    nom.value = "";
+    cognoms.value = "";
+    DNI.value = "";
+    targetaCredit.value = "";
 }
 
-function mostrarClients() {
+function mostrarClients(clients: Client[]) {
+    const clientsDiv: HTMLDivElement = document.getElementById("clients") as HTMLDivElement;
+
+    clientsDiv.innerHTML = "";
+
+    clients.forEach(client => {
+        clientsDiv.innerHTML += `${client.nom} ${client.cognoms}<br>`;
+    });
+}
+
+function afegirComanda() {
+    const nomPlats: HTMLInputElement = document.getElementById("nomPlat") as HTMLInputElement;
+
+    if(nomPlats.value == "") {
+        alert("Has d'omplir el camp");
+        return;
+    }
+
+    let comanda = new Comanda(nomPlats.value);
+
+    comandes.push(comanda);
+
+    mostrarComandes(comandes);
+
+    nomPlats.value = "";
+}
+
+function mostrarComandes(comandes: Comanda[]) {
+    const comandesDiv: HTMLDivElement = document.getElementById("comandes") as HTMLDivElement;
+
+    comandesDiv.innerHTML = "";
+
+    comandes.forEach(comanda => {
+        comandesDiv.innerHTML += `${comanda.nomPlats}<br>`;
+    });
+}
+
+function afegirComandaClient() {
+
+}
+
+function mostrarComandesClient() {
 
 }

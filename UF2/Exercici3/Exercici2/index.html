@@ -26,10 +26,13 @@
                     <label for="targeta">Targeta de credit</label>
                     <input type="text" name="targeta" id="targeta">
 
-                    <button class="btn enviar" onclick="afegirClient()">Afegir client</button>
+                    <button type="button" class="btn enviar" onclick="afegirClient()">Afegir client</button>
                 </form>
                 <h3>Mostrar clients</h3>
-                <button class="btn mostrar" onclick="mostrarClients()">Mostrar</button>
+                <div id="clients">
+
+                </div>
+                <button class="btn mostrar" onclick="mostrarClients(clients)">Mostrar</button>
             </section>
             <section class="comandes">
                 <h2>Comandes</h2>
@@ -38,10 +41,26 @@
                 <form action="">
                     <label for="nomPlat">Nom Plat</label>
                     <input type="text" name="nomPlat" id="nomPlat">
-                    <button class="btn enviar" onclick="afegirComanda()">Afegir comanda</button>
+                    <button type="button" class="btn enviar" onclick="afegirComanda()">Afegir comanda</button>
                 </form>
                 <h3>Mostrar comandes</h3>
-                <button class="btn mostrar" onclick="mostrarComandes()">Mostrar</button>
+                <div id="comandes"></div>
+                <button type="button" class="btn mostrar" onclick="mostrarComandes()">Mostrar</button>
+            </section>
+            <section class="comandesClients">
+                <h2>Comandes per client</h2>
+                <h3>Afegir comanda a client</h3>
+                <form action="">
+                    <label for="dniClient">DNI Client</label>
+                    <input type="text" name="dniClient" id="dniClient">
+                    <label for="nomPlatClient">Nom Plat</label>
+                    <input type="text" name="nomPlatClient" id="nomPlatClient">
+                    <button type="button" class="btn enviar" onclick="afegirComandaClient()">Afegir comanda a client</button>
+                </form>
+                <h3>Mostrar comandes per client</h3>
+                <div id="comandesClients"></div>
+                <button type="button" class="btn mostrar" onclick="mostrarComandesClients()">Mostrar</button>
+
             </section>
         </div>
     </main>
