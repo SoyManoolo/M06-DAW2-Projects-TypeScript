@@ -1,0 +1,65 @@
+/* Estilos generales */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    background: linear-gradient(90deg, #ff0000, #0000ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: calc();
+}
+
+/* Estilos para las imágenes */
+.images {
+    display: flex;
+    justify-content: space-between;
+    width: 320px;
+    margin-bottom: 30px;
+}
+
+.images img {
+    width: 120px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Estilos para los cuadros de colores */
+.color-boxes {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Colores de los cuadros */
+#red { background-color: red; }
+#blue { background-color: blue; }
+#orange { background-color: orange; }
+#brown { background-color: brown; }
+#purple { background-color: purple; }
+#green { background-color: green; }

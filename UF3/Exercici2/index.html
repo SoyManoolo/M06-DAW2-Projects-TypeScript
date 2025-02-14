@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+    <main>
+        <div class="formulario">
+            <h1>Formulario</h1>
+            <form action="unhtmlnou.html" method="get">
+                <fieldset>
+                    <legend>Datos personales</legend>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" required autofocus><br>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" required>
+                    <label for="edad">Edad:</label>
+                    <input type="number" name="edad" id="edad" required><br>
+                    <label for="genero">Género:</label><br>
+                    <select name="genero" id="genero" required>
+                        <optgroup label="Genéricos">
+                            <option value="male">Hombre</option>
+                            <option value="female">Mujer</option>
+                        </optgroup>
+                        <optgroup label="Otros">
+                            <option value="no binario">No binario</option>
+                            <option value="genero fluido">Género fluido</option>
+                        </optgroup>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend>Otros datos</legend>
+                    <label for="pais">País de residencia:</label>
+                    <input list="paises" name="pais" id="pais" required>
+                    <datalist id="paises">
+                        <option value="España">
+                        <option value="EEUU">
+                        <option value="China">
+                    </datalist>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required><br>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="number" name="telefono" id="telefono" class="tel" required>
+                </fieldset>
+                <fieldset>
+                    <label for="comentario">Comentario:</label><br>
+                    <textarea name="comentario" id="comentario" cols="41" rows="3" maxlength="123"></textarea>
+                </fieldset>
+                    <button type="button" class="borrar">Borrar</button>
+                    <input type="submit" class="enviar">
+            </form>
+        </div>
+    </main>
+</body>
+</html>

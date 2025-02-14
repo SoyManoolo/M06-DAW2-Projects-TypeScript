@@ -1,0 +1,183 @@
+/* Estilos generales */
+body {
+    background: linear-gradient(to left, rgb(1, 1, 15) 10%, rgb(1, 1, 26) 70%, rgb(1, 1, 15) 90%);
+}
+
+footer {
+    color: grey;
+    margin-top: 50px;
+}
+
+/* Contenedor principal */
+.container:nth-of-type(0) {
+    padding: 10px;
+    display: flex;
+    overflow-y: auto;
+    height: 100vh;
+    flex-direction: column; 
+}
+
+.centrado {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+
+/* Estilos de botones */
+.btn {
+    color: white;
+    border: 1px solid black;
+    margin: 10px;
+    background-color: #535399;
+    transition: 350ms;
+}
+
+.btn:hover,.btn:active {
+    background-color: #29296F !important;
+    color: white !important;
+}
+
+.btn:active {
+    transform: scale(1.05);
+}
+
+/* Títulos */
+h1 {
+    margin: 20px;
+    color: #D0D0EE;
+}
+
+h2 {
+    color: #8A8AC3;
+}
+
+h3 {
+    color: white;
+}
+
+
+
+/* Grid principal */
+.grid1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
+}
+
+/* Estructura de formulario */
+.introducirDatos {
+    margin: 10px;
+    grid-column: 2 / 4;
+}
+
+.grid1-1 {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10%;
+}
+
+/* Etiquetas y campos de entrada */
+.inputLabel {
+    display: flex;
+    align-items: center;
+    grid-row: 2;
+    grid-column: 1;
+    gap: 10px;
+}
+
+.input {
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+/* Botones de acción */
+.enviar,
+.listas,
+.btnPelis,
+.btnJuegos,
+.btnAmbas {
+    grid-column: 1;
+}
+
+.enviar {
+    grid-row: 3;
+}
+
+.btnListas {
+    grid-row: 4;
+}
+
+.btnPelis {
+    grid-row: 5;
+}
+
+.btnJuegos {
+    grid-row: 5;
+    grid-column: 2;
+}
+
+.btnAmbas {
+    grid-row: 6;
+}
+
+/* Segunda cuadrícula */
+.grid2 {
+    margin-top: 150px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
+}
+
+/* Etiquetas */
+label {
+    color: white;
+    margin: 5px;
+}
+
+table, th {
+    border: solid 1px white;
+    border-radius: 5px;
+    color: white;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 10px;
+    width: 100%;
+}
+
+th {
+    padding: 5px;
+}
+
+legend {
+    color: white;
+}
+
+.formulario {
+    border: solid 2px white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.separador {
+    height: 2px;
+    background-color: white;
+    border: none;
+    width: 100%;
+    opacity: 1 !important;
+    margin-bottom: 30px;
+}
+
+.selector {
+    border: solid 1px white;
+    border-radius: 5px;
+}
+
+.volver {
+    margin-left: auto;
+}
