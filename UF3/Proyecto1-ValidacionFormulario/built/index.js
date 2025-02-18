@@ -14,8 +14,25 @@ let videojuegos = new Map([
     ['The Legend of Zelda', 'Nintendo'],
     ['God of War', 'PlayStation'],
 ]);
-// Guardar clientes en LocalStorage al cargar el script
-localStorage.setItem("clientes", JSON.stringify(clientes));
+// ==============================
+// | Función para Validar Email |
+// ==============================
+const validarEmailArray = (clientes) => {
+    return clientes.filter(cliente => cliente.email.includes('@'));
+};
+// ================================
+// | Cargar Clientes desde Storage |
+// ================================
+let clientesGuardados = JSON.parse(localStorage.getItem("clientes") || "null");
+if (!clientesGuardados) {
+    // Si localStorage está vacío, guardar la lista inicial de clientes
+    clientes = validarEmailArray(clientes);
+    localStorage.setItem("clientes", JSON.stringify(clientes));
+}
+else {
+    // Si hay datos en localStorage, usarlos en lugar de la lista inicial
+    clientes = clientesGuardados;
+}
 // ==========================
 // |   Eventos de Botones   |
 // ==========================
@@ -34,30 +51,24 @@ document.getElementById("home")?.addEventListener("click", () => {
 // ==========================
 function mostrarClientes() {
     const listaClientes = document.getElementById('listaClientes');
-    listaClientes.innerHTML = '';
-    clientes.forEach(cliente => {
-        const fila = document.createElement("tr");
-        const celdaNombre = document.createElement("td");
-        celdaNombre.textContent = cliente.nombre;
-        const celdaCorreo = document.createElement("td");
-        celdaCorreo.textContent = cliente.email;
-        fila.appendChild(celdaNombre);
-        fila.appendChild(celdaCorreo);
-        listaClientes.appendChild(fila);
-    });
+    // Solo ejecutar si el elemento existe
+    if (listaClientes) {
+        listaClientes.innerHTML = '';
+        let clientesGuardados = JSON.parse(localStorage.getItem("clientes") || "[]");
+        clientesGuardados.forEach((cliente) => {
+            const fila = document.createElement("tr");
+            const celdaNombre = document.createElement("td");
+            celdaNombre.textContent = cliente.nombre;
+            const celdaCorreo = document.createElement("td");
+            celdaCorreo.textContent = cliente.email;
+            fila.appendChild(celdaNombre);
+            fila.appendChild(celdaCorreo);
+            listaClientes.appendChild(fila);
+        });
+    }
 }
-// ==============================
-// | Función para Validar Email |
-// ==============================
-const validarEmail = (clientes) => {
-    const clientesValidos = new Map();
-    clientes.forEach((nombre, correo) => {
-        if (correo.includes('@')) {
-            clientesValidos.set(correo, nombre);
-        }
-    });
-    return clientesValidos;
-};
+// Mostrar los clientes guardados al cargar la página
+document.addEventListener("DOMContentLoaded", mostrarClientes);
 // ===================================
 // | Funciones de Guardado y Listado |
 // ===================================
@@ -161,15 +172,39 @@ function mostrarListas(event) {
 // =======================================================================
 // | Evento para Capturar Datos del Formulario y Guardar en LocalStorage |
 // =======================================================================
-document.querySelector("form")?.addEventListener("submit", function (event) {
+// Añade esta función de validación de contraseña
+const validarPassword = (password) => {
+    // Debe contener al menos: 1 mayúscula, 1 minúscula, 1 número y 8 caracteres mínimo
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+};
+// Modifica el evento submit del formulario así:
+document.getElementById("mainForm")?.addEventListener("submit", function (event) {
     event.preventDefault();
-    let nombre = document.getElementById("nombre").value;
-    let email = document.getElementById("email").value;
-    let pelicula = document.getElementById("pelicula").value;
-    let generos = Array.from(document.getElementById("generos").selectedOptions).map(option => option.value);
+    let nombre = document.getElementById("nombre");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password"); // Nuevo
+    let pelicula = document.getElementById("pelicula");
+    let generosSelect = document.getElementById("generos");
+    let generos = Array.from(generosSelect.selectedOptions).map(option => option.value);
     let clientes = JSON.parse(localStorage.getItem("clientes") || "[]");
-    clientes.push({ email, nombre, pelicula, generos });
-    localStorage.setItem("clientes", JSON.stringify(clientes));
+    let nuevoCliente = { email: email.value, nombre: nombre.value, pelicula: pelicula.value, generos };
+    const clientesValidos = validarEmailArray([nuevoCliente]);
+    const passwordValido = validarPassword(password.value); // Validación añadida
+    if (clientesValidos.length > 0 && passwordValido) {
+        clientes.push(nuevoCliente);
+        localStorage.setItem("clientes", JSON.stringify(clientes));
+        mostrarClientes();
+        event.target.reset();
+    }
+    else {
+        let mensajeError = "";
+        if (clientesValidos.length === 0)
+            mensajeError += "Correo inválido. ";
+        if (!passwordValido)
+            mensajeError += "La contraseña debe tener: 8+ caracteres, 1 mayúscula, 1 minúscula y 1 número.";
+        alert(mensajeError);
+    }
 });
 // ==========================
 // |    Tareas Pendientes   |
@@ -178,5 +213,4 @@ document.querySelector("form")?.addEventListener("submit", function (event) {
 Cosas a hacer:
 - Validar la contraseña con un patrón que incluya una letra mayúscula, una minúscula, un número y al menos 8 caracteres.
 - Enviar los datos con un GET a la página principal sin usar alerts para los errores.
-- Al abrir la página, cargar los datos desde LocalStorage para que sean persistentes.
-*/
+*/ 
