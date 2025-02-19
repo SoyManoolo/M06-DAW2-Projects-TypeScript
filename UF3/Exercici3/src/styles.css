@@ -1,0 +1,39 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+button {
+    display: flex;
+    border-radius: 5px;
+    background-color: rgb(67, 207, 24);
+    border: solid 1px rgb(0, 0, 0);
+    margin: 10px 0; /* Cambiar a 10px 0 para añadir espacio vertical */
+    width: 200px;
+    height: 30px;
+    font-size: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: rgb(51, 165, 16);
+}
+
+button:active {
+    background-color: rgb(47, 141, 18);
+}
+
+body {
+    background-color: rgb(38, 38, 71);
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0; /* Añadir margen vertical */
+    color: white;
+}
