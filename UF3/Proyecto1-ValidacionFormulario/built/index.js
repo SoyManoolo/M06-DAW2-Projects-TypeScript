@@ -2,6 +2,7 @@
 // ===================================
 // |          DEFINICIÓN DE DATOS    |
 // ===================================
+// Lista de clientes con datos como email, nombre, película favorita y géneros preferidos
 let clientes = [
     { email: "example@gmail.com", nombre: "Example", pelicula: "The Matrix", generos: ["Accion", "Thriller"] },
     { email: "erik@gmail.com", nombre: "Erik", pelicula: "Interstellar", generos: ["Terror", "Ciencia ficcion"] },
@@ -9,7 +10,9 @@ let clientes = [
     { email: "mouad#gmail.com", nombre: "Mouad", pelicula: "The Matrix", generos: ["Accion"] },
     { email: "dani&gmail.com", nombre: "Dani", pelicula: "Inception", generos: ["Comedia"] }
 ];
+// Listado de películas
 let peliculas = ['Inception', 'The Matrix', 'Interstellar'];
+// Mapa de videojuegos con sus respectivas plataformas
 let videojuegos = new Map([
     ['The Legend of Zelda', 'Nintendo'],
     ['God of War', 'PlayStation'],
@@ -17,18 +20,21 @@ let videojuegos = new Map([
 // ===================================
 // |      VALIDACIÓN DE CLIENTES     |
 // ===================================
+// Filtra los clientes válidos verificando que el email contenga '@'
 const filtrarClientesValidos = (clientes) => {
     return clientes.filter(cliente => cliente.email.includes('@'));
 };
 // ===================================
 // |      GESTIÓN DE LOCALSTORAGE    |
 // ===================================
+// Obtiene los clientes almacenados en localStorage o un array vacío si no existen
 const obtenerClientesGuardados = () => {
     return JSON.parse(localStorage.getItem("clientes") || "[]");
 };
+// Inicializa los datos de clientes en localStorage si no existen
 const inicializarDatosClientes = () => {
     const datosGuardados = obtenerClientesGuardados();
-    if (datosGuardados.length === 0) {
+    if (datosGuardados.length === 0) { // Si no hay datos guardados, inicializar con los datos de clientes
         const clientesValidos = filtrarClientesValidos(clientes);
         localStorage.setItem("clientes", JSON.stringify(clientesValidos));
     }
@@ -36,6 +42,7 @@ const inicializarDatosClientes = () => {
 // ===================================
 // |       MANEJO DE EVENTOS         |
 // ===================================
+// Ejecuta las funciones de inicialización y muestra clientes al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
     inicializarDatosClientes();
     mostrarClientes();
@@ -43,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===================================
 // |    FUNCIONES DE VISUALIZACIÓN  |
 // ===================================
+// Muestra la lista de clientes en la tabla HTML
 function mostrarClientes() {
     const tablaClientes = document.getElementById('listaClientes');
     if (!tablaClientes)
@@ -50,13 +58,14 @@ function mostrarClientes() {
     tablaClientes.innerHTML = '';
     const datosClientes = obtenerClientesGuardados();
     datosClientes.forEach((cliente) => {
-        const fila = `<tr><td>${cliente.nombre}</td><td>${cliente.email}</td></tr>`;
+        const fila = `<tr><td>${cliente.nombre}</td><td>${cliente.email}</td></tr>`; // Crear fila con datos del cliente
         tablaClientes.insertAdjacentHTML('beforeend', fila);
     });
 }
 // ===================================
 // |   FUNCIONES DE MANIPULACIÓN     |
 // ===================================
+// Procesa la entrada del usuario desde un formulario
 const procesarEntradaUsuario = (event) => {
     event.preventDefault();
     const elementoInput = document.getElementById("titulo");
@@ -72,12 +81,14 @@ const procesarEntradaUsuario = (event) => {
         guardarProducto(texto);
     }
 };
+// Guarda un nuevo producto en la lista de películas o videojuegos
 const guardarProducto = (nombre, plataforma) => {
     plataforma ? videojuegos.set(nombre, plataforma) : peliculas.push(nombre);
 };
 // ===================================
 // |    GENERACIÓN DE LISTADOS      |
 // ===================================
+// Genera listados de películas y videojuegos en una tabla HTML
 const generarListado = (event) => {
     const boton = event.target;
     const contenedor = document.getElementById("lista-table");
@@ -108,6 +119,7 @@ const generarListado = (event) => {
 // ===================================
 // |    MANEJO DE FORMULARIO        |
 // ===================================
+// Maneja el envío del formulario de clientes
 document.getElementById("mainForm")?.addEventListener("submit", event => {
     event.preventDefault();
     const form = event.target;
@@ -130,7 +142,14 @@ document.getElementById("mainForm")?.addEventListener("submit", event => {
 // ===================================
 // |     CONFIGURACIÓN DE EVENTOS   |
 // ===================================
+// Asigna eventos a los botones para generar listados y procesar entradas
 document.getElementById("pelis")?.addEventListener("click", generarListado);
 document.getElementById("videojuegos")?.addEventListener("click", generarListado);
 document.getElementById("ambas")?.addEventListener("click", generarListado);
 document.getElementById("enviar")?.addEventListener("click", procesarEntradaUsuario);
+document.getElementById("formbutton")?.addEventListener("click", () => {
+    window.location.href = "/public/views/formulario.html";
+});
+document.getElementById("home")?.addEventListener("click", () => {
+    window.location.href = "/index.html";
+});
