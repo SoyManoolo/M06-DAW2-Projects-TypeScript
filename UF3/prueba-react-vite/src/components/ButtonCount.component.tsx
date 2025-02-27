@@ -1,13 +1,9 @@
-import { useState } from 'react'
-
-function ButtonCount() {
-  const [count, setCount] = useState(0)
+function ButtonCount({ onIncrement, clickValue}: {onIncrement: () => void, clickValue: number}) {
 
   return (
     <>
-        <button onClick={() => setCount((count) => count + 1)}>
-          <img src="" alt="" />
-          count is {count}
+        <button onClick={onIncrement}>
+          {clickValue}
         </button>
     </>
   )

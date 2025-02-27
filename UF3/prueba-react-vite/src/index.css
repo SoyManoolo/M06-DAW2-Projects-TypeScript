@@ -45,6 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 5px;
 }
 button:hover {
   border-color: #646cff;
@@ -65,4 +66,30 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.play {
+  background-color: green;
+  border: 1px solid transparent;
+}
+
+.play:hover {
+  border-color: rgb(1, 99, 1);
+}
+
+.reset {
+  background-color: red;
+  border: 1px solid transparent;
+}
+
+.reset:hover {
+  border-color: rgb(163, 7, 7);
+}
+
+.custom-link {
+  color: white;
+}
+
+.custom-link:hover {
+  color: white;
 }
