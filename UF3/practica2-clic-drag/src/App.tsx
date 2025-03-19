@@ -60,16 +60,21 @@ function App() {
   matrix[2][2] = "button";
 
   return (
+    // Contenedor principal
     <div className="flex flex-col items-center">
+      {/* Cabecera del juego */}
       <header className="mb-10"><h1>Juego de click and drag</h1></header>
+      {/* Cuadrícula 5x5 */}
       <div className="grid grid-cols-5 gap-2">
         {matrix.flat().map((item, index) => {
           const row = Math.floor(index / 5), col = index % 5;
           return (
+            // Celda individual con eventos para drag and drop
             <div key={index} className="w-16 h-16 flex items-center justify-center border border-gray-300 rounded-xs"
                  draggable={!!item && item !== "button"} onDragOver={(e) => e.preventDefault()}
                  onDragStart={(e) => e.dataTransfer.setData("from", JSON.stringify({ row, col }))}
                  onDrop={(e) => handleDrop(JSON.parse(e.dataTransfer.getData("from")), { row, col })}>
+              {/* Renderizado condicional: botón especial, imagen según tipo, o celda vacía */}
               {item === "button" ? <BtnComponent clickEffect={btnClick} /> : 
                item ? <ImgComponent type={item} /> : null}
             </div>
