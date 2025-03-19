@@ -61,35 +61,17 @@ function App() {
 
   return (
     <div className="flex flex-col items-center">
-      <header className="mb-10">
-        <h1>Juego de click and drag</h1> {/* Título del juego */}
-      </header>
-
+      <header className="mb-10"><h1>Juego de click and drag</h1></header>
       <div className="grid grid-cols-5 gap-2">
-        {/* Renderizar la matriz */}
         {matrix.flat().map((item, index) => {
-          const row = Math.floor(index / 5);
-          const col = index % 5;
-
+          const row = Math.floor(index / 5), col = index % 5;
           return (
-            <div
-              key={index}
-              className="w-16 h-16 flex items-center justify-center border border-gray-300 rounded-xs"
-              draggable={!!item && item !== "button"} // Hacer que las imágenes sean arrastrables
-              onDragStart={(e) => {
-                e.dataTransfer.setData("from", JSON.stringify({ row, col }));
-              }}
-              onDragOver={(e) => e.preventDefault()} // Permitir soltar
-              onDrop={(e) => {
-                const from = JSON.parse(e.dataTransfer.getData("from"));
-                handleDrop(from, { row, col });
-              }}
-            >
-              {item === "button" ? ( // Si es el botón, renderizar BtnComponent
-                <BtnComponent clickEffect={() => { btnClick(); }} />
-              ) : item ? ( // Si es una imagen, renderizar ImgComponent
-                <ImgComponent type={item} />
-              ) : null} {/* Si está vacío, no renderizar nada */}
+            <div key={index} className="w-16 h-16 flex items-center justify-center border border-gray-300 rounded-xs"
+                 draggable={!!item && item !== "button"} onDragOver={(e) => e.preventDefault()}
+                 onDragStart={(e) => e.dataTransfer.setData("from", JSON.stringify({ row, col }))}
+                 onDrop={(e) => handleDrop(JSON.parse(e.dataTransfer.getData("from")), { row, col })}>
+              {item === "button" ? <BtnComponent clickEffect={btnClick} /> : 
+               item ? <ImgComponent type={item} /> : null}
             </div>
           );
         })}
